@@ -33,14 +33,22 @@ const Orders = () => {
   return (
     <>
       <Container fluid className="my-5">
-        <Container style={{textAlign: "center"}}>
+        <Container fluid style={{ textAlign: "center" }}>
           <h2> Welcome! {loggedInUser.name} to your Order Summery</h2>
           <h4>There {userOrders.length} orders you have made</h4>
-          <p>Please ensure this is you email: <span style={{color: "blue"}}>{loggedInUser.email}</span> to receive your order confirmation</p>
-          <p><small>**All the products includes tax and shipment within this country</small></p>
+          <p>
+            Please ensure this is you email:{" "}
+            <span style={{ color: "blue" }}>{loggedInUser.email}</span> to
+            receive your order confirmation
+          </p>
+          <p>
+            <small>
+              **All the products includes tax and shipment within this country
+            </small>
+          </p>
         </Container>
         {userOrders.length > 0 ? (
-          <Container>
+          <Container fluid>
             <Table striped bordered hover size="sm">
               <tbody>
                 {userOrders &&
