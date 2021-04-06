@@ -15,7 +15,7 @@ const Laptops = () => {
       imgUrl: imgUrl,
     };
 
-    const url = `http://localhost:5000/addLaptop`;
+    const url = `https://desolate-dusk-05837.herokuapp.com/addLaptop`;
     fetch(url, {
       method: "POST",
       headers: {

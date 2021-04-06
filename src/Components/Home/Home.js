@@ -7,14 +7,14 @@ const Home = () => {
   const [laptops, setLaptops] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/laptops")
+    fetch("https://desolate-dusk-05837.herokuapp.com/laptops")
       .then((res) => res.json())
       .then((data) => setLaptops(data));
   }, []);
 
   return (
     <>
-      <Container>
+      <Container fluid>
         <Row>
           {laptops.map((item) => (
             <Laptop key={item._id} item={item}></Laptop>

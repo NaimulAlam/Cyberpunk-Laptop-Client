@@ -10,14 +10,14 @@ const Checkout = () => {
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:5000/laptop/" + id)
+    fetch("https://desolate-dusk-05837.herokuapp.com/laptop/" + id)
       .then((res) => res.json())
       .then((data) => setItem(data));
   }, [id]);
 
   const handleCheckout = () => {
     const newOrder = { ...loggedInUser, newOrder: item, orderTime: new Date() };
-    fetch("http://localhost:5000/addOrders", {
+    fetch("https://desolate-dusk-05837.herokuapp.com/addOrders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

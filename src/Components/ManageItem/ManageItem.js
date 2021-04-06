@@ -7,13 +7,11 @@ const ManageItem = (props) => {
   const { _id, brand, name, price } = props.item;
 
   function deleteProduct() {
-    fetch(`http://localhost:5000/delete/${_id}`, {
+    fetch(`https://desolate-dusk-05837.herokuapp.com/delete/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result, "clicked");
-        console.log("deleted successfully", result);
         if (result) {
           alert('The Laptop Deleted Successfully')
         }
