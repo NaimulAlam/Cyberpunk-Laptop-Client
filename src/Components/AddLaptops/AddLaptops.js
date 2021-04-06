@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, ModalFooter, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import Footer from "../Footer/Footer";
 import SideNavbar from "../SideNavbar/SideNavbar";
 
 const Laptops = () => {
@@ -47,6 +48,7 @@ const Laptops = () => {
   };
 
   return (
+    <>
     <Container fluid>
       <Row>
         <Col xs={12} md={2}>
@@ -109,6 +111,10 @@ const Laptops = () => {
         </Col>
       </Row>
     </Container>
+    <ModalFooter>
+      <Footer></Footer>
+    </ModalFooter>
+    </>
   );
 };
 

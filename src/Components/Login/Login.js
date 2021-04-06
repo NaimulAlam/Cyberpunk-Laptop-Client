@@ -8,7 +8,8 @@ import {
   handleGoogleSignIn,
   handleSignOut,
 } from "./LoginManager";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, ModalFooter } from "react-bootstrap";
+import Footer from "../Footer/Footer";
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -19,7 +20,7 @@ const Login = () => {
     email: "",
     photo: "",
   });
-  
+
   const history = useHistory();
   const location = useLocation();
 
@@ -48,25 +49,28 @@ const Login = () => {
   };
 
   return (
-    <Container fluid >
-      <div className="loginContainer">
-        { user.isSignedIn && 
-        <h2 className="my-5">User: {user.name}</h2>
-        }
+    <>
+      <Container className="my-5" fluid>
+        <div className="loginContainer">
+          {user.isSignedIn && <h2 className="my-5">User: {user.name}</h2>}
 
-        {user.isSignedIn ? (
-          <Button onClick={signOut} variant="danger" size="lg" >
-            <img className="iconClass" src={googleIcon} alt="icon" />
-            Google Sign Out
-          </Button>
-        ) : (
-          <Button onClick={googleSignIn} variant="light" size="lg">
-            <img className="iconClass" src={googleIcon} alt="icon" />
-            Google Sign In
-          </Button>
-        )}
-      </div>
-    </Container>
+          {user.isSignedIn ? (
+            <Button onClick={signOut} variant="danger" size="lg">
+              <img className="iconClass" src={googleIcon} alt="icon" />
+              Google Sign Out
+            </Button>
+          ) : (
+            <Button onClick={googleSignIn} variant="light" size="lg">
+              <img className="iconClass" src={googleIcon} alt="icon" />
+              Google Sign In
+            </Button>
+          )}
+        </div>
+      </Container>
+      <ModalFooter>
+        <Footer></Footer>
+      </ModalFooter>
+    </>
   );
 };
 

@@ -34,9 +34,9 @@ const Checkout = () => {
 
   return (
     <div>
-      <Container fluid >
+      <Container className="mt-5" fluid >
         <div className="mx-5">
-        <h4>Checkout</h4>
+        <h4 className="mb-3">Checkout</h4>
         {/* <p>id:{item._id}</p> */}
         <Table striped bordered hover size="sm">
           <thead>
