@@ -20,7 +20,7 @@ const Laptop = (props) => {
         <Card.Img className="imgBG" variant="top" src={imgUrl} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Text>{price}</Card.Text>
+          <Card.Text>${price}</Card.Text>
           <Button onClick={() => handleClick(_id)} variant="primary">
             Buy Now
           </Button>
