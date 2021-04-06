@@ -12,9 +12,6 @@ import { Button, Container } from "react-bootstrap";
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  const history = useHistory();
-  const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
 
   const [user, setUser] = useState({
     isSignedIn: false,
@@ -22,6 +19,11 @@ const Login = () => {
     email: "",
     photo: "",
   });
+  
+  const history = useHistory();
+  const location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/login" } };
 
   initializeLogin();
 
@@ -46,22 +48,24 @@ const Login = () => {
   };
 
   return (
-    <Container fluid style={{ textAlign: "center" }}>
-      { user.isSignedIn && 
-       <h2>User: {user.name}</h2>
-      }
+    <Container fluid >
+      <div className="loginContainer">
+        { user.isSignedIn && 
+        <h2 className="my-5">User: {user.name}</h2>
+        }
 
-      {user.isSignedIn ? (
-        <Button onClick={signOut} variant="danger">
-          <img className="iconClass" src={googleIcon} alt="icon" />
-          Google Sign Out
-        </Button>
-      ) : (
-        <Button onClick={googleSignIn} variant="light" size="lg">
-          <img className="iconClass" src={googleIcon} alt="icon" />
-          Google Sign In
-        </Button>
-      )}
+        {user.isSignedIn ? (
+          <Button onClick={signOut} variant="danger" size="lg" >
+            <img className="iconClass" src={googleIcon} alt="icon" />
+            Google Sign Out
+          </Button>
+        ) : (
+          <Button onClick={googleSignIn} variant="light" size="lg">
+            <img className="iconClass" src={googleIcon} alt="icon" />
+            Google Sign In
+          </Button>
+        )}
+      </div>
     </Container>
   );
 };

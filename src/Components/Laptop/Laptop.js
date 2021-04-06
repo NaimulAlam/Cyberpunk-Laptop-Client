@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Card, CardDeck, Col } from "react-bootstrap";
+import { Button, Card, Col } from "react-bootstrap";
 import {useHistory} from 'react-router';
+import './Laptop.css';
 
 const Laptop = (props) => {
 
@@ -15,8 +16,8 @@ const Laptop = (props) => {
 
   return (
     <Col lg={4} md={6} xs={12}>
-      <Card>
-        <Card.Img variant="top" src={imgUrl} />
+      <Card className="cardDesign">
+        <Card.Img className="imgBG" variant="top" src={imgUrl} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{price}</Card.Text>

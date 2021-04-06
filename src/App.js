@@ -9,46 +9,41 @@ import AddLaptops from "./Components/AddLaptops/AddLaptops";
 import Login from "./Components/Login/Login";
 import Orders from "./Components/Orders/Orders";
 import Manage from "./Components/Manage/Manage";
-
+import PrivateRoute from "./Components/PrivetRoute/PrivetRoute";
 
 export const UserContext = createContext();
 
 function App() {
-  
   const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
-    <UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
-      <h3>email: {loggedInUser.email}</h3>
-    <Router>
-      <div>
-        <Header />
-        <hr />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/admin">
-            <Admin />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/manage">
-            <Manage />
-          </Route>
-          <Route path="/addLaptops">
-            <AddLaptops />
-          </Route>
-          <Route path="/laptop/:id">
-            <Checkout />
-          </Route>
-          <Route path="/orders">
-          <Orders />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <PrivateRoute path="/admin">
+              <Admin />
+            </PrivateRoute>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/manage">
+              <Manage />
+            </PrivateRoute>
+            <PrivateRoute path="/addLaptops">
+              <AddLaptops />
+            </PrivateRoute>
+            <PrivateRoute path="/laptop/:id">
+              <Checkout />
+            </PrivateRoute>
+            <PrivateRoute path="/orders">
+              <Orders />
+            </PrivateRoute>
+          </Switch>
+      </Router>
     </UserContext.Provider>
   );
 }

@@ -8,8 +8,10 @@ const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="/">Cyberpunk Gaming Laptops</Navbar.Brand>
+    <Navbar className="navbarClass" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Link className="mx-4 linkStyle" to="/">
+        <Navbar.Brand id="BandName">Cyberpunk Gaming Laptops</Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mx-auto ">
@@ -24,22 +26,27 @@ const Header = () => {
           </Link>
         </Nav>
         <Nav>
-          { !loggedInUser.email ? (
+          {!loggedInUser.email ? (
             <Button mx={5} variant="primary">
               <Link className="linkStyle" to="/login">
                 Login
               </Link>
             </Button>
           ) : (
-            <Button mx={5} variant="primary">
-              <Link
-                onClick={() => setLoggedInUser({})}
-                className="linkStyle"
-                to="/"
-              >
-                Logout
-              </Link>
-            </Button>
+            <Link onClick={() => setLoggedInUser({})} to="/">
+              <div className="container">
+                <img
+                  src={loggedInUser.photo}
+                  className="logo"
+                  alt="UserPhoto"
+                />
+                <div className="overlay">
+                  <p href='/' className="icon" title="User Profile">
+                    Logout
+                  </p>
+                </div>
+              </div>
+            </Link>
           )}
         </Nav>
       </Navbar.Collapse>

@@ -1,0 +1,15 @@
+.linkStyle{
+    text-decoration: none;
+    color: white;
+}
+.linkStyle img{
+    height: 20px;
+}
+.linkStyle:hover{
+    text-decoration: none;
+    color: rgb(139, 235, 130);
+}
+.btnGap{
+    margin: 10px;
+    padding: 10px;
+}

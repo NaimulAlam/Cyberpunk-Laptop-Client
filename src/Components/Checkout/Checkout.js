@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import { useParams } from "react-router";
+import { UserContext } from "../../App";
 
 const Checkout = () => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
   const { id } = useParams();
   const [item, setItem] = useState({});
 
@@ -12,9 +15,27 @@ const Checkout = () => {
       .then((data) => setItem(data));
   }, [id]);
 
+  const handleCheckout = () => {
+    const newOrder = { ...loggedInUser, newOrder: item, orderTime: new Date() };
+    fetch("http://localhost:5000/addOrders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newOrder),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Your Order Placed Successfully");
+        }
+      });
+  };
+
   return (
     <div>
-      <Container fluid>
+      <Container fluid >
+        <div className="mx-5">
         <h4>Checkout</h4>
         {/* <p>id:{item._id}</p> */}
         <Table striped bordered hover size="sm">
@@ -39,9 +60,14 @@ const Checkout = () => {
             </tr>
           </tbody>
         </Table>
-        <Button style={{ position: "absolute", right: "20px" }} type="submit">
+        <Button
+          onClick={handleCheckout}
+          style={{ position: "absolute", right: "70px" }}
+          type="submit"
+        >
           Checkout
         </Button>
+        </div>
       </Container>
     </div>
   );

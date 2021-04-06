@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import SideNavbar from "../SideNavbar/SideNavbar";
 
 const Laptops = () => {
   const { register, handleSubmit, errors } = useForm();
-
   const [imgUrl, setImgUrl] = useState({});
 
   const onSubmit = (data) => {
@@ -15,19 +14,24 @@ const Laptops = () => {
       price: data.price,
       imgUrl: imgUrl,
     };
-    const url = `http://localhost:5000/addLaptop`;
 
+    const url = `http://localhost:5000/addLaptop`;
     fetch(url, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(laptopData),
-    }).then((res) => console.log("server response", res));
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Your Order Saved Successfully");
+        }
+      });
   };
 
   const handleImageUpload = (event) => {
-    // console.log(event.target.files[0]);
     const imgData = new FormData();
     imgData.set("key", "b7d1f7ea94e0d0890ce2429fdf90f279");
     imgData.append("image", event.target.files[0]);
@@ -42,37 +46,66 @@ const Laptops = () => {
       });
   };
 
-  //   console.log(watch("name", "brand", "price"));
-
   return (
     <Container fluid>
       <Row>
-        <Col xs={12} md={4} style={{ backgroundColor: "dimgray" }}>
+        <Col xs={12} md={2}>
           <SideNavbar></SideNavbar>
         </Col>
-        <Col xs={12} md={8} >
-          <h1>This is place for adding laptops</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              name="name"
-              defaultValue="New Gaming Laptop"
-              ref={register}
-            />
-            <br />
-            <input name="brand" defaultValue="Brand Name" ref={register} />
-            <br />
-            <input name="price" defaultValue="500" ref={register} />
-            <br />
-            <input
-              name="exampleRequired"
-              type="file"
-              onChange={handleImageUpload}
-            />
-            <br />
-            {errors.exampleRequired && <span>This field is required</span>}
-
-            <input type="submit" />
-          </form>
+        <Col xs={12} md={10}>
+          <Col>
+            <h1>This is place for adding laptops</h1>
+          </Col>
+          <Col>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <Row>
+                <Col>
+                  <Form.Control
+                    required
+                    name="name"
+                    placeholder="Laptop Description"
+                    ref={register}
+                  />
+                  <br />
+                </Col>
+                <Col>
+                  <Form.Control
+                    required
+                    name="brand"
+                    placeholder="Brand Name"
+                    ref={register}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Control
+                    required
+                    name="price"
+                    placeholder="Price"
+                    ref={register}
+                  />
+                </Col>
+                <Col>
+                  <Form.Control
+                    className="uploadBtn"
+                    required
+                    name="imgUrl"
+                    type="file"
+                    onChange={handleImageUpload}
+                  />
+                  {errors.exampleRequired && (
+                    <span>This field is required</span>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col md={{ span: 6, offset: 6 }}>
+                  <Button type="submit">Save</Button>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
         </Col>
       </Row>
     </Container>
