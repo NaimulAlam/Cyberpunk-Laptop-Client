@@ -27,7 +27,7 @@ const Laptops = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          alert("Your Order Saved Successfully");
+          alert("Your Product Added Successfully");
         }
       });
   };

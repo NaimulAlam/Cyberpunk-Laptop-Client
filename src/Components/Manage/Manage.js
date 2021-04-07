@@ -17,7 +17,9 @@ const Manage = () => {
   useEffect(() => {
     fetch("https://desolate-dusk-05837.herokuapp.com/laptops")
       .then((res) => res.json())
-      .then((data) => setManageLaptops(data));
+      .then((data) => {
+        setManageLaptops(data);
+      });
   }, []);
 
   return (
@@ -35,21 +37,25 @@ const Manage = () => {
                 </Col>
               </Row>
             )}
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>Brand Name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {manageLaptops.map((laptop) => (
-                  <ManageItem key={laptop._id} item={laptop}></ManageItem>
-                ))}
-              </tbody>
-            </Table>
+            {manageLaptops.length ? (
+              <Table striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th>Brand Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {manageLaptops.map((laptop) => (
+                    <ManageItem key={laptop._id} item={laptop}></ManageItem>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <h1>No Record Available. Add Some Laptops First</h1>
+            )}
           </Col>
         </Row>
       </Container>

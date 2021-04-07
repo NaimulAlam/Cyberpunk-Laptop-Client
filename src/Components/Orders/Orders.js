@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Container, ModalFooter, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import Footer from "../Footer/Footer";
 import "./Orders.css";
 
 const Orders = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [loggedInUser] = useContext(UserContext);
   const [userOrders, setUserOrders] = useState([]);
 
   //   const [totalPrice setTotalPrice] = useState()
@@ -28,12 +29,12 @@ const Orders = () => {
       .then((data) => {
         setUserOrders(data);
       });
-  }, []);
+  }, [loggedInUser]);
 
   return (
     <>
-      <Container fluid className="my-5">
-        <Container fluid style={{ textAlign: "center" }}>
+      <Container style={{ textAlign: "center" }} fluid className="my-5">
+        <Container fluid>
           <h2> Welcome! {loggedInUser.name} to your Order Summery</h2>
           <h4>There {userOrders.length} orders you have made</h4>
           <p>
@@ -79,7 +80,16 @@ const Orders = () => {
             </Table>
             <Button onClick={() => handlePayment()}>Proceed to Payment</Button>
           </Container>
-        ) : null}
+        ) : (
+          <Container className="my-5" fluid>
+            <h2>
+              You did not made any orders yet. please select some orders first
+            </h2>
+            <Link to="/">
+              <Button className="my-3" variant="primary">Choose a Product</Button>
+            </Link>
+          </Container>
+        )}
       </Container>
       <ModalFooter>
         <Footer></Footer>
