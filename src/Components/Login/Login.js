@@ -10,6 +10,7 @@ import {
 } from "./LoginManager";
 import { Button, Container, ModalFooter } from "react-bootstrap";
 import Footer from "../Footer/Footer";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -52,7 +53,15 @@ const Login = () => {
     <>
       <Container className="my-5" fluid>
         <div className="loginContainer">
-          {user.isSignedIn && <h2 className="my-5">User: {user.name}</h2>}
+          {user.isSignedIn && (
+            <Container className="my-5" fluid>
+              <h2>Welcome! {user.name}</h2>
+              <hr></hr>
+              <h6>Thank you for visiting our Website.</h6>
+              <h4>Ready to make some purchase?</h4>
+              <Link to="/"><Button className="my-4" variant="primary">Products</Button></Link>
+            </Container>
+          )}
 
           {user.isSignedIn ? (
             <Button onClick={signOut} variant="danger" size="lg">

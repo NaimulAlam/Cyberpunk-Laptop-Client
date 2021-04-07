@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { UserContext } from "../../App";
 
 const Checkout = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [loggedInUser] = useContext(UserContext);
 
   const { id } = useParams();
   const [item, setItem] = useState({});

@@ -17,7 +17,7 @@ const Orders = () => {
   }
 
   const handlePayment = () => {
-    console.log("Hello");
+    alert("Payment gateway under process");
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Orders = () => {
 
   return (
     <>
-      <Container style={{ textAlign: "center" }} fluid className="my-5">
+      <Container style={{ textAlign: "center" }} className="my-5" fluid>
         <Container fluid>
           <h2> Welcome! {loggedInUser.name} to your Order Summery</h2>
           <h4>There {userOrders.length} orders you have made</h4>
@@ -49,9 +49,16 @@ const Orders = () => {
           </p>
         </Container>
         {userOrders.length > 0 ? (
-          <Container fluid>
+          <Container className="my-5" fluid>
             <Table striped bordered hover size="sm">
               <tbody>
+                <tr style={{backgroundColor: "#03fcf8"}}>
+                  <td>Image</td>
+                  <td>Description</td>
+                  <td>Date</td>
+                  <td>Quantity</td>
+                  <td>Price</td>
+                </tr>
                 {userOrders &&
                   userOrders.map((order) => (
                     <tr key={order._id}>
@@ -59,16 +66,15 @@ const Orders = () => {
                         <img
                           className="tdImg"
                           src={order.newOrder.imgUrl}
-                          alt="ordered laptop view"
+                          alt="ordered laptop"
                         ></img>
                       </td>
                       <td>{order.newOrder.name}</td>
                       <td>
-                        Date:
                         {new Date(order.orderTime).toDateString("dd/MM/yyyy")}
                       </td>
+                      <td>1</td>
                       <td>${order.newOrder.price}</td>
-                      <td>Qty:1</td>
                     </tr>
                   ))}
                 <tr>
@@ -86,7 +92,9 @@ const Orders = () => {
               You did not made any orders yet. please select some orders first
             </h2>
             <Link to="/">
-              <Button className="my-3" variant="primary">Choose a Product</Button>
+              <Button className="my-3" variant="primary">
+                Choose a Product
+              </Button>
             </Link>
           </Container>
         )}

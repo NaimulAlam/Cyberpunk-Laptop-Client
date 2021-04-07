@@ -10,7 +10,7 @@ const Footer = () => {
 
     return (
         <div style={footer}>
-            <p> &copy; <a href="https://www.linkedin.com/in/naimul-alam/" target="_blank">Naimul Alam</a> || All rights reserved <small> 2021 </small></p>
+            <p> &copy; <a href="https://www.linkedin.com/in/naimul-alam/" target="_blank" rel="noreferrer">Naimul Alam</a> || All rights reserved <small> 2021 </small></p>
         </div>
     );
 };
