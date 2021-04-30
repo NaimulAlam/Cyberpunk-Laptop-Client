@@ -1,7 +1,6 @@
 # Full-Stack Website
 
-## Product-Based Responsive E-Commerce Website (dummy laptop sell)
-it is a Gaming Laptop Selling(dummy) Website
+## Product-Based Responsive E-Commerce Website (Dummy Gaming Laptop Sell)
 here is the [Live Website Link](https://cyberpunk-laptop.web.app/).
 
 
