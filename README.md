@@ -22,6 +22,6 @@ here is the [Live Website Link](https://cyberpunk-laptop.web.app/).
 - [x] Spinner Loading upon async await
 
 Technology: React, Router, Node.js, Express.js, MongoDB, Firebase Authentication &
-Hosting, Heroku, Bootstrap, Stripe-Payment API. 
+Hosting, Heroku, React-Bootstrap, etc. 
 
 [Server Side Link](https://github.com/NaimulAlam/Cyberpunk-Laptop-Server).
